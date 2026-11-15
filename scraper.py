@@ -1,6 +1,5 @@
 import os
 import json
-import time
 from datetime import datetime, timezone
 from google import genai
 from supabase import create_client
@@ -19,7 +18,7 @@ supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 ai_client = genai.Client(api_key=GEMINI_API_KEY)
 
 def run_pipeline():
-    print("Sending prompt to Gemini 2.5 Flash...")
+    print("Sending prompt to Gemini 3.8 Flash...")
     prompt = """
     Generate 1 realistic Indian renewable energy policy update (MNRE, CERC, or SECI).
     Return ONLY valid JSON with these exact keys:
@@ -27,7 +26,7 @@ def run_pipeline():
     """
     
     response = ai_client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.8-flash",
         contents=prompt,
         config={"response_mime_type": "application/json"}
     )
