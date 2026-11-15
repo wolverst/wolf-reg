@@ -7,9 +7,9 @@ from supabase import create_client
 
 print("Starting scraper script...")
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL")
-SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "").strip().rstrip("/")
+SUPABASE_SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "").strip()
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 
 if not SUPABASE_URL or not SUPABASE_SERVICE_ROLE_KEY or not GEMINI_API_KEY:
     raise ValueError("Missing one or more required environment variables (Secrets)!")
@@ -18,7 +18,6 @@ supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 ai_client = genai.Client(api_key=GEMINI_API_KEY)
 
 def generate_with_retry(prompt):
-    # Try primary model first, fall back to lite if high demand (503) persists
     models_to_try = ["gemini-3.8-flash", "gemini-3.8-flash-lite"]
     
     for model_name in models_to_try:
@@ -34,7 +33,7 @@ def generate_with_retry(prompt):
             except Exception as e:
                 print(f"Temporary error on {model_name}: {e}")
                 if attempt < 2:
-                    time.sleep(10)  # Wait 10 seconds before retrying
+                    time.sleep(10)
                     
     raise RuntimeError("All model attempts failed due to temporary server load.")
 
