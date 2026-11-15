@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>wolfreg — Indian Renewable Energy & Climate Policy Intelligence</title>
+    <meta
+      name="description"
+      content="Executive regulatory intelligence terminal tracking MNRE, CERC, SECI, IREDA, MoP, CEA, PIB, and e-Gazette policy shifts across India's clean energy markets."
+    />
+    <meta property="og:title" content="wolfreg — Indian Renewable Energy & Climate Policy Intelligence" />
+    <meta
+      property="og:description"
+      content="Executive regulatory intelligence terminal tracking MNRE, CERC, SECI, IREDA, MoP, CEA, PIB, and e-Gazette policy shifts across India's clean energy markets."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('wolf_theme');
+          if (saved === 'light') {
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-slate-50 text-slate-900 dark:bg-obsidian-950 dark:text-slate-100 antialiased selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-300">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
